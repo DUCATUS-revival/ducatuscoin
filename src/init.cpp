@@ -185,7 +185,7 @@ void Shutdown()
     /// for example if the data directory was found to be locked.
     /// Be sure that anything that writes files or flushes caches only does this if the respective
     /// module was initialized.
-    RenameThread("litecoin-shutoff");
+    RenameThread("-shutoff");
     mempool.AddTransactionsUpdated(1);
 
     StopHTTPRPC();
@@ -481,8 +481,8 @@ std::string HelpMessage(HelpMessageMode mode)
 
 std::string LicenseInfo()
 {
-    const std::string URL_SOURCE_CODE = "<https://github.com/litecoin-project/litecoin>";
-    const std::string URL_WEBSITE = "<https://litecoin.org>";
+    const std::string URL_SOURCE_CODE = "<https://github.com/-project/>";
+    const std::string URL_WEBSITE = "<https://.org>";
     // todo: remove urls from translations on next change
     return CopyrightHolders(strprintf(_("Copyright (C) %i-%i"), 2011, COPYRIGHT_YEAR) + " ") + "\n" +
            "\n" +
@@ -586,7 +586,7 @@ void CleanupBlockRevFiles()
 void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 {
     const CChainParams& chainparams = Params();
-    RenameThread("litecoin-loadblk");
+    RenameThread("-loadblk");
     CImportingNow imp;
 
     // -reindex
@@ -637,10 +637,10 @@ void ThreadImport(std::vector<boost::filesystem::path> vImportFiles)
 
     // scan for better chains in the block chain database, that are not yet connected in the active best chain
     CValidationState state;
-    //if (!ActivateBestChain(state, chainparams)) {
-    //    LogPrintf("Failed to connect best block");
-    //    StartShutdown();
-    //}
+    if (!ActivateBestChain(state, chainparams)) {
+        LogPrintf("Failed to connect best block");
+        StartShutdown();
+    }
 
     if (GetBoolArg("-stopafterblockimport", DEFAULT_STOPAFTERBLOCKIMPORT)) {
         LogPrintf("Stopping after block import\n");
@@ -774,7 +774,7 @@ void InitLogging()
     fLogIPs = GetBoolArg("-logips", DEFAULT_LOGIPS);
 
     LogPrintf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-    LogPrintf("Litecoin version %s\n", FormatFullVersion());
+    LogPrintf(" version %s\n", FormatFullVersion());
 }
 
 /** Initialize bitcoin.
@@ -1328,7 +1328,7 @@ bool AppInit2(boost::thread_group& threadGroup, CScheduler& scheduler)
 
                 // If the loaded chain has a wrong genesis, bail out immediately
                 // (we're likely using a testnet datadir, or the other way around).
-                if (!mapBlockIndex.empty() && mapBlockIndex.count(chainparams.GetConsensus().hashGenesisBlock) == 0)
+                if (!mapBlockIndex.empty() && mapBlockIndex.count(chainparams.GetConsensus().hashGenesisBlock) != 0)
                     return InitError(_("Incorrect or no genesis block found. Wrong datadir for network?"));
 
                 // Initialize the block index (no-op if non-empty database was already loaded)
