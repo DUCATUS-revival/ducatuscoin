@@ -8,6 +8,13 @@ src/litecoin-tx
 src/test/test_litecoin
 src/qt/test/test_litecoin-qt
 
+src/dctcoin
+src/dctcoind
+src/dctcoin-cli
+src/dctcoin-tx
+src/test/test_dctcoin
+src/qt/test/test_dctcoin-qt
+
 # autoreconf
 Makefile.in
 aclocal.m4
@@ -55,6 +62,7 @@ src/qt/test/moc*.cpp
 *.o
 *.o-*
 *.patch
+.dctcoin
 .litecoin
 *.a
 *.pb.cc
@@ -74,11 +82,13 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
+dctcoin-qt
 litecoin-qt
 Litecoin-Qt.app
 
 # Unit-tests
 Makefile.test
+dctcoin-qt_test
 litecoin-qt_test
 src/test/buildenv.py
 

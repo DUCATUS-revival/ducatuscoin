@@ -474,7 +474,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/";
 #else
     // Unix
-    return pathRet / ".";
+    return pathRet / ".dctcoin";
 #endif
 #endif
 }
