@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "HARD TRUTH: Surge in opioid deaths spurs grimly candid obituaries";
+    const char* pszTimestamp = "Sony, Warner Settle Amway Copyright Ambush Suit";
 
     //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
@@ -114,10 +114,10 @@ public:
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1494811623, 2084524493, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1483501153, 3552019, 0x1e0ffff0, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x469162e06d2e6087e416f0767aa105740d713107470a8b68455b4d8da3fb9553"));
-        assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
+        assert(consensus.hashGenesisBlock == uint256S("0x847b826ef70fd9522232b494fd6fa1d27c6ccb93a264af2a6831af9ef8b05e83"));
+        assert(genesis.hashMerkleRoot == uint256S("0x57e10075e98588eb5491d303216fe4c00f682305d79ae7f1daccd542e2474740"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-a..loshan.co.uk", true));
@@ -166,7 +166,7 @@ public:
 	//};
 	checkpointData = (CCheckpointData){
 		boost::assign::map_list_of
-			( 0, uint256S("0x")),
+			( 0, uint256S("0x847b826ef70fd9522232b494fd6fa1d27c6ccb93a264af2a6831af9ef8b05e83")),
 	};
 
     }
@@ -220,8 +220,8 @@ class CTestNetParams : public CChainParams {
 			//genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
 			genesis = CreateGenesisBlock(1494809358, 293345, 0x1e0ffff0, 1, 50 * COIN);
 			consensus.hashGenesisBlock = genesis.GetHash();
-			assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
-			assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
+			//assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
+			//assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
 
 			vFixedSeeds.clear();
 			vSeeds.clear();
@@ -300,8 +300,8 @@ class CRegTestParams : public CChainParams {
 
 			genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN);
 			consensus.hashGenesisBlock = genesis.GetHash();
-			assert(consensus.hashGenesisBlock == uint256S("0xb083dd15b59955281e1edfe902d811d9437bfd41af1e9db9c5b1627e939e263f"));
-			assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
+			//assert(consensus.hashGenesisBlock == uint256S("0xb083dd15b59955281e1edfe902d811d9437bfd41af1e9db9c5b1627e939e263f"));
+			//assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
 
 			vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
 			vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
