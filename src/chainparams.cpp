@@ -83,8 +83,8 @@ public:
 	consensus.nPowTargetSpacing = 1 * 60; // 1 minute
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
-        consensus.nRuleChangeActivationThreshold = 15120; // 75% of 8064
-        consensus.nMinerConfirmationWindow = 20160; // nPowTargetTimespan / nPowTargetSpacing * 4
+        consensus.nRuleChangeActivationThreshold = 3780; // 75% of 8064
+        consensus.nMinerConfirmationWindow = 5040; // nPowTargetTimespan / nPowTargetSpacing
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
         consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -146,13 +146,6 @@ public:
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
-
-// Yep, need to get rid of this duplication later
-			fMiningRequiresPeers = false;
-			fDefaultConsistencyChecks = true;
-			fRequireStandard = false;
-			fMineBlocksOnDemand = true; 
-			fTestnetToBeDeprecatedFieldRPC = false;
 
 	//checkpointData = (CCheckpointData) {
 	//	boost::assign::map_list_of

@@ -7,6 +7,36 @@ services:
                 volumes:
                         - /root/.ducatuscoin
 
+                          #        ducatuscoin-backup-1:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-1:/root/.ducatuscoin
+                          #        ducatuscoin-backup-2:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-2:/root/.ducatuscoin
+                          #        ducatuscoin-backup-3:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-3:/root/.ducatuscoin
+                          #        ducatuscoin-backup-4:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-4:/root/.ducatuscoin
+                          #        ducatuscoin-backup-5:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-5:/root/.ducatuscoin
+                          #        ducatuscoin-backup-6:
+                          #                image: ducatuscoin
+                          #                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
+                          #                volumes:
+                          #                        - ./backup-6:/root/.ducatuscoin
         ducatuscoin:
                 image: ducatuscoin
                 links:
