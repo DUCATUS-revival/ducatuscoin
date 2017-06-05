@@ -71,7 +71,7 @@ cp /usr/local/bin/ducatuscoind /usr/lib/node_modules/litecore-node/bin/litecoind
 cp /usr/local/bin/ducatuscoind /usr/lib/node_modules/litecore-node/bin/litecoin-0.13.2/bin/litecoind
 
 RUN sed -i 's/rpcport: 9332/rpcport: 9690/g' /root/ducatusnode/node_modules/litecore-node/lib/services/bitcoind.js  
-ADD ./docker-files/network.js /root/ducatusnode/node_modules/litecore-lib/lib/network.js
+ADD ./docker-files/network.js /root/ducatusnode/node_modules/litecore-lib/lib/networks.js
 ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/bitcoin.conf
 ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/litecoin.conf
 ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/ducatuscoin.conf
