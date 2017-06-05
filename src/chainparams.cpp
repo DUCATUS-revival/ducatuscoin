@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "Sony, Warner Settle Amway Copyright Ambush Suit";
+    const char* pszTimestamp = "S";
 
     //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
@@ -72,15 +72,15 @@ class CMainParams : public CChainParams {
 public:
     CMainParams() {
         strNetworkID = "main";
-        consensus.nSubsidyHalvingInterval = 840000;
+	consensus.nSubsidyHalvingInterval = 77787420;
         consensus.nMajorityEnforceBlockUpgrade = 750;
         consensus.nMajorityRejectBlockOutdated = 950;
         consensus.nMajorityWindow = 1000;
         consensus.BIP34Height = 710000;
         consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-        consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
-        consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
-        consensus.nPowTargetSpacing = 2.5 * 60;
+        consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"); 
+        consensus.nPowTargetTimespan = 14 * 24 * 60 * 60; // .35 days TODO: Change back or something
+        consensus.nPowTargetSpacing = 5; //2.5 * 60;
         consensus.fPowAllowMinDifficultyBlocks = false;
         consensus.fPowNoRetargeting = false;
         consensus.nRuleChangeActivationThreshold = 6048; // 75% of 8064
@@ -107,17 +107,17 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 32-bit integer with any alignment.
          */
-        pchMessageStart[0] = 0xfb;
-        pchMessageStart[1] = 0xc0;
-        pchMessageStart[2] = 0xb6;
-        pchMessageStart[3] = 0xdb;
+        pchMessageStart[0] = 0xeb;
+        pchMessageStart[1] = 0xd0;
+        pchMessageStart[2] = 0xc6;
+        pchMessageStart[3] = 0xdc;
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1483501153, 3552019, 0x1e0ffff0, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1483501153, 0, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x847b826ef70fd9522232b494fd6fa1d27c6ccb93a264af2a6831af9ef8b05e83"));
-        assert(genesis.hashMerkleRoot == uint256S("0x57e10075e98588eb5491d303216fe4c00f682305d79ae7f1daccd542e2474740"));
+        //assert(consensus.hashGenesisBlock == uint256S("0x54d95b3052d21518510872ebb33727eb434b8cf080d257f355c2da90823345cf"));
+        //assert(genesis.hashMerkleRoot == uint256S("0x5dd65248795d1efacc1d6f35870986dbb1d0125d88edaec3c1997f33336fb9fa"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-a..loshan.co.uk", true));
@@ -166,7 +166,7 @@ public:
 	//};
 	checkpointData = (CCheckpointData){
 		boost::assign::map_list_of
-			( 0, uint256S("0x847b826ef70fd9522232b494fd6fa1d27c6ccb93a264af2a6831af9ef8b05e83")),
+			( 0, uint256S("0x5b2562ce57d360fd8510b3a42d0184639f867d59d0397194eec1f2372ecec33b")),
 	};
 
     }

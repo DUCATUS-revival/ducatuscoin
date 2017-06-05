@@ -1,0 +1,32 @@
+version: '2'
+
+services:
+        dctcoin-seed:
+                build: ./
+                volumes:
+                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
+                command: dctcoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass
+
+        dctcoin:
+                build: ./
+                volumes:
+                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
+                links:
+                        - dctcoin-seed
+                command: dctcoind -server -listen -addnode=dctcoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass
+
+#        dctcoin-tumbler:
+#                build: ./
+#                volumes:
+#                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
+#                links:
+#                        - dctcoinseed
+#                command: dctcoind --addnode dctcoinseed
+#             server=1
+#             daemon=1
+#             listen=1
+#             rpcuser=USER
+#             rpcpassword=SOMEWILDDIGITS
+#             rpcallowip=127.0.0.1
+#             rpcallowip=192.168.2.2
+#             rpcport=8332
