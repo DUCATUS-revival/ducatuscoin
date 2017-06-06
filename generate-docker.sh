@@ -2,6 +2,5 @@
 
 while true;
 do
-docker ps -q | while read line ; do docker exec -i $line dctcoin-cli generate 1000 &  done
-sleep 1
+sudo docker ps -q | while read line ; do sudo docker exec -i $line ducatuscoin-cli generate 1000 ;  done
 done

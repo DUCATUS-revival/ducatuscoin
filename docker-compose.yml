@@ -4,6 +4,8 @@ services:
         ducatuscoin-seed:
                 build: ./
                 command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do ducatuscoin-cli -rpcwait generate 1; done'
+                ports:
+                        - "9690:9690"
 
         ducatuscoin:
                 build: ./
@@ -11,9 +13,6 @@ services:
                         - ducatuscoin-seed
                 command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do ducatuscoin-cli -rpcwait generate 1; done'
 
-volumes:
-          bitcoin-seed:
-          bitcoin:
 #        ducatuscoin-tumbler:
 #                build: ./
 #                volumes:
