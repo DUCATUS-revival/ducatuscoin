@@ -99,8 +99,8 @@ namespace boost {
 
 using namespace std;
 
-const char * const BITCOIN_CONF_FILENAME = "dctcoin.conf";
-const char * const BITCOIN_PID_FILENAME = "dctcoin.pid";
+const char * const BITCOIN_CONF_FILENAME = "ducatuscoin.conf";
+const char * const BITCOIN_PID_FILENAME = "ducatuscoin.pid";
 
 map<string, string> mapArgs;
 map<string, vector<string> > mapMultiArgs;
@@ -474,7 +474,7 @@ boost::filesystem::path GetDefaultDataDir()
     return pathRet / "Library/Application Support/";
 #else
     // Unix
-    return pathRet / ".dctcoin";
+    return pathRet / ".ducatuscoin";
 #endif
 #endif
 }
