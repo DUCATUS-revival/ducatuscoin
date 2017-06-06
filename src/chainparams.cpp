@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "S";
+    const char* pszTimestamp = "bc1c914c79e3612d5569d3b980e089edb016536e26f54791f3001206456da0d1";
 
     //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
@@ -114,10 +114,10 @@ public:
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1483501153, 0, 0x207fffff, 1, 50 * COIN);
+        genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN);
         consensus.hashGenesisBlock = genesis.GetHash();
-        //assert(consensus.hashGenesisBlock == uint256S("0x54d95b3052d21518510872ebb33727eb434b8cf080d257f355c2da90823345cf"));
-        //assert(genesis.hashMerkleRoot == uint256S("0x5dd65248795d1efacc1d6f35870986dbb1d0125d88edaec3c1997f33336fb9fa"));
+        assert(consensus.hashGenesisBlock == uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403"));
+        assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
         //vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-a..loshan.co.uk", true));
@@ -166,7 +166,7 @@ public:
 	//};
 	checkpointData = (CCheckpointData){
 		boost::assign::map_list_of
-			( 0, uint256S("0x5b2562ce57d360fd8510b3a42d0184639f867d59d0397194eec1f2372ecec33b")),
+			( 0, uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403")),
 	};
 
     }
