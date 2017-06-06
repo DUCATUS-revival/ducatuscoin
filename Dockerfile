@@ -36,8 +36,8 @@ RUN adduser --disabled-login --gecos "" ducatus
 WORKDIR /home/ducatus
 
 # copy the testnet-box files into the image
-ADD . /home/ducatus/dctcoin
-WORKDIR /home/ducatus/dctcoin
+ADD . /home/ducatus/ducatuscoin
+WORKDIR /home/ducatus/ducatuscoin
 
 RUN ./autogen.sh
 RUN aclocal
@@ -47,9 +47,9 @@ RUN autoconf
 RUN ./configure --with-system-univalue 
 RUN make
 RUN make -j 5 install
-RUN mkdir -p /home/ducatus/dctcoin-tumbler
-RUN mkdir -p /home/ducatus/.dctcoin/
-ADD ./dctcoin.conf /home/ducatus/.dctcoin/
+RUN mkdir -p /home/ducatus/ducatuscoin-tumbler
+RUN mkdir -p /home/ducatus/.ducatuscoin/
+ADD ./ducatuscoin.conf /home/ducatus/.ducatuscoin/
 
 # make ducatus user own the bitcoin-testnet-box
 RUN chown -R ducatus:ducatus /home/ducatus
@@ -58,7 +58,7 @@ RUN chown -R ducatus:ducatus /home/ducatus
 USER ducatus
 
 # run commands from inside the testnet-box directory
-WORKDIR /home/ducatus/dctcoin-tumbler
+WORKDIR /home/ducatus/ducatuscoin-tumbler
 
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 9690 9691

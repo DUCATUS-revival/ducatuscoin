@@ -1,26 +1,26 @@
 version: '2'
 
 services:
-        dctcoin-seed:
+        ducatuscoin-seed:
                 build: ./
-                command: bash -c 'dctcoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do dctcoin-cli -rpcwait generate 1; done'
+                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do ducatuscoin-cli -rpcwait generate 1; done'
 
-        dctcoin:
+        ducatuscoin:
                 build: ./
                 links:
-                        - dctcoin-seed
-                command: bash -c 'dctcoind -server -listen -addnode=dctcoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do dctcoin-cli -rpcwait generate 1; done'
+                        - ducatuscoin-seed
+                command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do ducatuscoin-cli -rpcwait generate 1; done'
 
 volumes:
           bitcoin-seed:
           bitcoin:
-#        dctcoin-tumbler:
+#        ducatuscoin-tumbler:
 #                build: ./
 #                volumes:
-#                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
+#                        - ./ducatuscoin-tumbler:/home/ducatus/ducatuscoin-tumbler
 #                links:
-#                        - dctcoinseed
-#                command: dctcoind --addnode dctcoinseed
+#                        - ducatuscoinseed
+#                command: ducatuscoind --addnode ducatuscoinseed
 #             server=1
 #             daemon=1
 #             listen=1
