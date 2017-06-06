@@ -8,12 +8,12 @@ src/litecoin-tx
 src/test/test_litecoin
 src/qt/test/test_litecoin-qt
 
-src/dctcoin
-src/dctcoind
-src/dctcoin-cli
-src/dctcoin-tx
-src/test/test_dctcoin
-src/qt/test/test_dctcoin-qt
+src/ducatus
+src/ducatusd
+src/ducatus-cli
+src/ducatus-tx
+src/test/test_ducatus
+src/qt/test/test_ducatus-qt
 
 # autoreconf
 Makefile.in
@@ -62,7 +62,7 @@ src/qt/test/moc*.cpp
 *.o
 *.o-*
 *.patch
-.dctcoin
+.ducatus
 .litecoin
 *.a
 *.pb.cc
@@ -82,13 +82,13 @@ src/qt/test/moc*.cpp
 # Compilation and Qt preprocessor part
 *.qm
 Makefile
-dctcoin-qt
+ducatus-qt
 litecoin-qt
 Litecoin-Qt.app
 
 # Unit-tests
 Makefile.test
-dctcoin-qt_test
+ducatus-qt_test
 litecoin-qt_test
 src/test/buildenv.py
 
