@@ -11,16 +11,23 @@ RUN apt-get install -y autoconf
 RUN apt-get install -y libtool
 RUN apt-get install -y libboost-all-dev
 RUN apt-get install -y wget
+RUN apt-get install -y software-properties-common python-software-properties
+RUN add-apt-repository -y ppa:bitcoin/bitcoin
+RUN apt-get update -y
+RUN apt-get install -y bitcoind git
+RUN apt-get install -y libdb4.8-dev libdb4.8++-dev
 
-RUN wget http://download.oracle.com/berkeley-db/db-4.8.30.NC.tar.gz
-RUN tar -xzvf db-4.8.30.NC.tar.gz
-RUN cd db-4.8.30.NC/build_unix \
-	../dist/configure --enable-cxx --prefix=/usr \
-	make -j8 \
-	make install 
+RUN git clone https://github.com/jgarzik/univalue; \
+	cd univalue; \
+	./autogen.sh; \
+	./configure; \
+	make install
 
 # install bitcoind (from PPA) and make
 RUN apt-get install --yes make pkg-config bsdmainutils
+RUN apt-get install -y libminiupnpc-dev 
+RUN apt-get install -y libzmq3-dev
+RUN apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5-dev-tools libprotobuf-dev protobuf-compiler
 
 # create a non-root user
 RUN adduser --disabled-login --gecos "" ducatus
@@ -37,10 +44,12 @@ RUN aclocal
 RUN ./autogen.sh
 RUN autoreconf -i
 RUN autoconf
-RUN ./configure --with-incompatible-bdb
+RUN ./configure --with-system-univalue 
 RUN make
 RUN make -j 5 install
-RUN mkdir /home/ducatus/dctcoin-tumbler
+RUN mkdir -p /home/ducatus/dctcoin-tumbler
+RUN mkdir -p /home/ducatus/.dctcoin/
+ADD ./dctcoin.conf /home/ducatus/.dctcoin/
 
 # make ducatus user own the bitcoin-testnet-box
 RUN chown -R ducatus:ducatus /home/ducatus
@@ -52,5 +61,5 @@ USER ducatus
 WORKDIR /home/ducatus/dctcoin-tumbler
 
 # expose two rpc ports for the nodes to allow outside container access
-EXPOSE 19001 19011
+EXPOSE 9690 9691
 CMD ["/bin/bash"]

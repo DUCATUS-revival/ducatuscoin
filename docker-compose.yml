@@ -3,18 +3,17 @@ version: '2'
 services:
         dctcoin-seed:
                 build: ./
-                volumes:
-                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
-                command: dctcoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass
+                command: bash -c 'dctcoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do dctcoin-cli -rpcwait generate 1; done'
 
         dctcoin:
                 build: ./
-                volumes:
-                        - ./dctcoin-tumbler:/home/ducatus/dctcoin-tumbler
                 links:
                         - dctcoin-seed
-                command: dctcoind -server -listen -addnode=dctcoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass
+                command: bash -c 'dctcoind -server -listen -addnode=dctcoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass; while true ; do dctcoin-cli -rpcwait generate 1; done'
 
+volumes:
+          bitcoin-seed:
+          bitcoin:
 #        dctcoin-tumbler:
 #                build: ./
 #                volumes:
