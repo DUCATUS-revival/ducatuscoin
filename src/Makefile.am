@@ -65,11 +65,11 @@ TESTS =
 BENCHMARKS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += ducatusd
+  bin_PROGRAMS += ducatuscoind
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += ducatus-cli ducatus-tx
+  bin_PROGRAMS += ducatuscoin-cli ducatuscoin-tx
 endif
 
 .PHONY: FORCE check-symbols check-security
@@ -339,16 +339,16 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-ducatusd_SOURCES = bitcoind.cpp
-ducatusd_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-ducatusd_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ducatusd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ducatuscoind_SOURCES = bitcoind.cpp
+ducatuscoind_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ducatuscoind_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ducatuscoind_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ducatusd_SOURCES += bitcoind-res.rc
+ducatuscoind_SOURCES += bitcoind-res.rc
 endif
 
-ducatusd_LDADD = \
+ducatuscoind_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -361,38 +361,38 @@ ducatusd_LDADD = \
   $(LIBMEMENV) \
   $(LIBSECP256K1)
 
-ducatusd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
+ducatuscoind_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS) $(ZMQ_LIBS)
 
 # bitcoin-cli binary #
-ducatus_cli_SOURCES = bitcoin-cli.cpp
-ducatus_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
-ducatus_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ducatus_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ducatuscoin_cli_SOURCES = bitcoin-cli.cpp
+ducatuscoin_cli_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+ducatuscoin_cli_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ducatuscoin_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ducatus_cli_SOURCES += bitcoin-cli-res.rc
+ducatuscoin_cli_SOURCES += bitcoin-cli-res.rc
 endif
 
-ducatus_cli_LDADD = \
+ducatuscoin_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
   $(LIBBITCOIN_CRYPTO)
 
-ducatus_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
+ducatuscoin_cli_LDADD += $(BOOST_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(EVENT_LIBS)
 #
 
 # bitcoin-tx binary #
-ducatus_tx_SOURCES = bitcoin-tx.cpp
-ducatus_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
-ducatus_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
-ducatus_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+ducatuscoin_tx_SOURCES = bitcoin-tx.cpp
+ducatuscoin_tx_CPPFLAGS = $(AM_CPPFLAGS) $(BITCOIN_INCLUDES)
+ducatuscoin_tx_CXXFLAGS = $(AM_CXXFLAGS) $(PIE_FLAGS)
+ducatuscoin_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-ducatus_tx_SOURCES += bitcoin-tx-res.rc
+ducatuscoin_tx_SOURCES += bitcoin-tx-res.rc
 endif
 
-ducatus_tx_LDADD = \
+ducatuscoin_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -400,7 +400,7 @@ ducatus_tx_LDADD = \
   $(LIBBITCOIN_CRYPTO) \
   $(LIBSECP256K1)
 
-ducatus_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
+ducatuscoin_tx_LDADD += $(BOOST_LIBS) $(CRYPTO_LIBS)
 #
 
 # bitcoinconsensus library #
