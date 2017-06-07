@@ -39,6 +39,8 @@ WORKDIR /home/ducatus
 ADD . /home/ducatus/ducatuscoin
 WORKDIR /home/ducatus/ducatuscoin
 
+RUN make clean
+RUN git clean -fdx
 RUN ./autogen.sh
 RUN aclocal
 RUN ./autogen.sh
