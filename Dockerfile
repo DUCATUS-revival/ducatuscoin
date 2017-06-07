@@ -46,7 +46,7 @@ RUN aclocal
 RUN ./autogen.sh
 RUN autoreconf -i
 RUN autoconf
-RUN ./configure --with-system-univalue 
+RUN ./configure --with-system-univalue --with-gui=no --with-qrencode=no 
 RUN make
 RUN make -j 5 install
 RUN mkdir -p /home/ducatus/ducatuscoin-tumbler
