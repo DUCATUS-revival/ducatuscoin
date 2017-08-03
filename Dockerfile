@@ -33,11 +33,11 @@ RUN apt-get install -y libqt5gui5 libqt5core5a libqt5dbus5 qttools5-dev qttools5
 RUN adduser --disabled-login --gecos "" ducatus
 
 # run following commands from user's home directory
-WORKDIR /home/ducatus
+WORKDIR /root
 
 # copy the testnet-box files into the image
-ADD . /home/ducatus/ducatuscoin
-WORKDIR /home/ducatus/ducatuscoin
+ADD . /root/ducatuscoin
+WORKDIR /root/ducatuscoin
 
 RUN git clean -fdx
 RUN ./autogen.sh
@@ -48,18 +48,18 @@ RUN autoconf
 RUN ./configure --with-system-univalue --with-gui=no --with-qrencode=no 
 RUN make
 RUN make -j 5 install
-RUN mkdir -p /home/ducatus/ducatuscoin-tumbler
-RUN mkdir -p /home/ducatus/.ducatuscoin/
-ADD ./ducatuscoin.conf /home/ducatus/.ducatuscoin/
+RUN mkdir -p /root/ducatuscoin-tumbler
+RUN mkdir -p /root/.ducatuscoin/
+ADD ./ducatuscoin.conf /root/.ducatuscoin/
 
 # make ducatus user own the bitcoin-testnet-box
-RUN chown -R ducatus:ducatus /home/ducatus
+RUN chown -R ducatus:ducatus /root
 
 # use the ducatus user when running the image
-USER ducatus
+#USER ducatus
 
 # run commands from inside the testnet-box directory
-WORKDIR /home/ducatus/ducatuscoin-tumbler
+WORKDIR /root/ducatuscoin-tumbler
 
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 9690 9691
