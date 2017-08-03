@@ -2,7 +2,7 @@ version: '2'
 
 services:
         ducatuscoin-seed:
-                build: ./
+                build: ducatuscoin
                 command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass '
                 ports:
                         - "9690:9690"
@@ -10,7 +10,7 @@ services:
                         - ./data-dir:/home/ducatus/.ducatuscoin
 
         ducatuscoin:
-                build: ./
+                image: ducatuscoin
                 links:
                         - ducatuscoin-seed
                 command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass & while true ; do ducatuscoin-cli -rpcwait generate 1000; done'
