@@ -102,6 +102,32 @@ public:
         // The best chain should have at least this much work.
         consensus.nMinimumChainWork = uint256S("0x000000000000000000000000000000000000000000000005c13f99f6d0b1a908");
 
+			consensus.nSubsidyHalvingInterval = 150;
+			consensus.nMajorityEnforceBlockUpgrade = 750;
+			consensus.nMajorityRejectBlockOutdated = 950;
+			consensus.nMajorityWindow = 1000;
+			consensus.BIP34Height = -1; // BIP34 has not necessarily activated on regtest
+			consensus.BIP34Hash = uint256();
+			consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // two weeks
+			consensus.nPowTargetSpacing = 2.5 * 60;
+			consensus.fPowAllowMinDifficultyBlocks = true;
+			consensus.fPowNoRetargeting = true;
+			consensus.nRuleChangeActivationThreshold = 108; // 75% for testchains
+			consensus.nMinerConfirmationWindow = 144; // Faster than normal for regtest (144 instead of 2016)
+			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
+			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 0;
+			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 999999999999ULL;
+			consensus.vDeployments[Consensus::DEPLOYMENT_CSV].bit = 0;
+			consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nStartTime = 0;
+			consensus.vDeployments[Consensus::DEPLOYMENT_CSV].nTimeout = 999999999999ULL;
+			consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].bit = 1;
+			consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nStartTime = 0;
+			consensus.vDeployments[Consensus::DEPLOYMENT_SEGWIT].nTimeout = 999999999999ULL;
+
+			// The best chain should have at least this much work.
+			consensus.nMinimumChainWork = uint256S("0x00");
+
         /**
          * The message start string is designed to be unlikely to occur in normal data.
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
@@ -134,12 +160,21 @@ public:
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
+			vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
+			vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
         fRequireStandard = true;
         fMineBlocksOnDemand = false;
         fTestnetToBeDeprecatedFieldRPC = false;
+
+// Yep, need to get rid of this duplication later
+			fMiningRequiresPeers = false;
+			fDefaultConsistencyChecks = true;
+			fRequireStandard = false;
+			fMineBlocksOnDemand = true; 
+			fTestnetToBeDeprecatedFieldRPC = false;
 
 	//checkpointData = (CCheckpointData) {
 	//	boost::assign::map_list_of
@@ -167,6 +202,9 @@ public:
 	checkpointData = (CCheckpointData){
 		boost::assign::map_list_of
 			( 0, uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403")),
+			0,
+			0,
+			0
 	};
 
     }

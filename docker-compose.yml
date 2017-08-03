@@ -6,25 +6,22 @@ services:
                 command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass '
                 ports:
                         - "9690:9690"
+                volumes:
+                        - ./data_dir:
 
         ducatuscoin:
                 build: ./
                 links:
                         - ducatuscoin-seed
-                command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass & while true ; do ducatuscoin-cli -rpcwait generate 1000; done'
+                command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -daemon; while true ; do ducatuscoin-cli -rpcwait generate 1000; done'
 
-#        ducatuscoin-tumbler:
+#        ducatuscoin-mac1:
 #                build: ./
-#                volumes:
-#                        - ./ducatuscoin-tumbler:/home/ducatus/ducatuscoin-tumbler
+#                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -connect=ducatuscoin-mac2'
 #                links:
-#                        - ducatuscoinseed
-#                command: ducatuscoind --addnode ducatuscoinseed
-#             server=1
-#             daemon=1
-#             listen=1
-#             rpcuser=USER
-#             rpcpassword=SOMEWILDDIGITS
-#             rpcallowip=127.0.0.1
-#             rpcallowip=192.168.2.2
-#             rpcport=8332
+#                        - ducatuscoin-mac2
+#
+#
+#        ducatuscoin-mac2:
+#                build: ./
+#                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass ' #-daemon; while true ; do ducatuscoin-cli -rpcwait generate 10; sleep 10; done'
