@@ -3,17 +3,17 @@ version: '2'
 services:
         ducatuscoin-seed:
                 image: ducatuscoin
-                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass '
-                ports:
-                        - "9690:9690"
+                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
                 volumes:
-                        - ./data-dir:/root/.ducatuscoin
+                        - /root/.ducatuscoin
 
         ducatuscoin:
                 image: ducatuscoin
                 links:
                         - ducatuscoin-seed
-                command: bash -c 'ducatuscoind -server -listen -addnode=ducatuscoin-seed -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass & while true ; do ducatuscoin-cli -rpcwait generate 1000; done'
+                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass '
+                ports:
+                        - "9690:9690"
                 volumes:
-                        - /root/.ducatuscoin
+                        - ./data-dir:/root/.ducatuscoin
 
