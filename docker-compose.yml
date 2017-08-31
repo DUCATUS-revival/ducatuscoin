@@ -13,8 +13,8 @@ services:
                 volumes:
                         - /root/.ducatuscoin
                 ports:
-                        - "9690:9690"
                         - "3001:3001"
+
 
         ducatuscoin:
                 image: ducatuscoin
