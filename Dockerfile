@@ -52,11 +52,6 @@ RUN mkdir -p /root/ducatuscoin-tumbler
 RUN mkdir -p /root/.ducatuscoin/
 ADD ./ducatuscoin.conf /root/.ducatuscoin/
 
-RUN apt-get install -y curl
-RUN curl –sL https://deb.nodesource.com/setup | bash -
-RUN apt-get install -y nodejs
-RUN npm install -g bitcore
-
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 9690 9691
 CMD ["/bin/bash"]
