@@ -52,14 +52,10 @@ RUN mkdir -p /root/ducatuscoin-tumbler
 RUN mkdir -p /root/.ducatuscoin/
 ADD ./ducatuscoin.conf /root/.ducatuscoin/
 
-# make ducatus user own the bitcoin-testnet-box
-RUN chown -R ducatus:ducatus /root
-
-# use the ducatus user when running the image
-#USER ducatus
-
-# run commands from inside the testnet-box directory
-WORKDIR /root/ducatuscoin-tumbler
+RUN apt-get install -y curl
+RUN curl –sL https://deb.nodesource.com/setup | bash -
+RUN apt-get install -y nodejs
+RUN npm install -g bitcore
 
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 9690 9691
