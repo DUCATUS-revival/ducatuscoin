@@ -72,6 +72,9 @@ cp /usr/local/bin/ducatuscoind /usr/lib/node_modules/litecore-node/bin/litecoin-
 
 RUN sed -i 's/rpcport: 9332/rpcport: 9690/g' /root/ducatusnode/node_modules/litecore-node/lib/services/bitcoind.js  
 ADD ./docker-files/network.js /root/ducatusnode/node_modules/litecore-lib/lib/network.js
+ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/bitcoin.conf
+ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/litecoin.conf
+ADD ./docker-files/bitcoin.conf /root/ducatusnode/data/ducatuscoin.conf
 
 # expose two rpc ports for the nodes to allow outside container access
 EXPOSE 9690 9691
