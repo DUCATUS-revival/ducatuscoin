@@ -126,6 +126,8 @@ public:
         // Note that of those with the service bits flag, most only support a subset of possible options
         vSeeds.push_back(CDNSSeedData("ducatusdns.com", "dnsseed.ducatusdns.com", true));
         vSeeds.push_back(CDNSSeedData("ducatus.io", "dnsseed.ducatus.io"));
+        vSeeds.push_back(CDNSSeedData("ducatus.io", "dnsseed1.ducatus.io", true));
+        vSeeds.push_back(CDNSSeedData("ducatus.io", "dnsseed2.ducatus.io", false));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,49);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,6);
