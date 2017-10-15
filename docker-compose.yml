@@ -1,28 +1,25 @@
 version: '2'
 
 services:
-        ducatuscoin-seed:
-                image: ducatuscoin
-                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass -addnode=ducatuscoin '
-                volumes:
-                        - /root/.ducatuscoin
-
         blockchain-api:
                 image: ducatus-api
                 command: tail -f /dev/random
                 volumes:
-                        - /root/.ducatuscoin
+                        - blockchain-api-volume:/root/.ducatuscoin
+                        - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
                 ports:
                         - "3001:3001"
 
-
         ducatuscoin:
                 image: ducatuscoin
-                links:
-                        - ducatuscoin-seed
-                command: bash -c 'ducatuscoind -server -listen -rpcallowip="0.0.0.0" -rpcbind="0.0.0.0" -rpcuser=user -rpcpassword=pass '
+                command: bash -c 'ducatuscoind; tail -f /dev/random'
                 ports:
                         - "9690:9690"
+                        - "9691:9691"
                 volumes:
-                        - ./data-dir:/root/.ducatuscoin
+                        - ducatuscoin-volume:/root/.ducatuscoin
+                        - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
 
+volumes:
+        ducatuscoin-volume:
+        blockchain-api-volume:
