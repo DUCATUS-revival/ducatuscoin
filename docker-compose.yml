@@ -12,7 +12,7 @@ services:
 
         ducatuscoin:
                 image: ducatuscoin
-                command: bash -c 'ducatuscoind; tail -f /dev/random'
+                command: bash -c 'ducatuscoind; tail -f /root/.ducatuscoin/debug.log'
                 ports:
                         - "9690:9690"
                         - "9691:9691"
