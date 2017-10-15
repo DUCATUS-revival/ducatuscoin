@@ -124,11 +124,8 @@ public:
         assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
-        //vSeeds.push_back(CDNSSeedData("ducatuscoin-seed", "ducatuscoin-seed", true));
-        //vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed.thrasher.io", true));
-        //vSeeds.push_back(CDNSSeedData("tools.com", "dnsseed.tools.com"));
-        //vSeeds.push_back(CDNSSeedData("pool.org", "dnsseed.pool.org"));
-        //vSeeds.push_back(CDNSSeedData("koin-project.com", "dnsseed.koin-project.com"));
+        vSeeds.push_back(CDNSSeedData("ducatusdns.com", "dnsseed.ducatusdns.com", true));
+        vSeeds.push_back(CDNSSeedData("ducatus.io", "dnsseed.ducatus.io"));
 
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,49);
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,6);
@@ -139,7 +136,6 @@ public:
 
         vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_main, pnSeed6_main + ARRAYLEN(pnSeed6_main));
 			vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
-			vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
 
         fMiningRequiresPeers = true;
         fDefaultConsistencyChecks = false;
