@@ -1,15 +1,6 @@
 version: '2'
 
 services:
-        blockchain-api:
-                image: ducatus-api
-                command: tail -f /dev/random
-                volumes:
-                        - blockchain-api-volume:/root/.ducatuscoin
-                        - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-                ports:
-                        - "3001:3001"
-
         ducatuscoin:
                 image: ducatuscoin
                 command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
@@ -23,4 +14,3 @@ services:
 
 volumes:
         ducatuscoin-volume:
-        blockchain-api-volume:

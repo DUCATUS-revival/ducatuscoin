@@ -61,7 +61,9 @@ RUN npm install -g litecore-node@latest && \
 litecore-node create ducatusnode && \
 cd ducatusnode && \
 litecore-node install insight-lite-api && \
-litecore-node install insight-lite-ui
+litecore-node install insight-lite-ui && \
+cd node_modules/insight-lite-api/ && \
+npm install request@2.81.0 --save
 
 RUN cp /usr/local/bin/ducatuscoind /root/ducatusnode/node_modules/litecore-node/bin/litecoind && \
 cp /usr/local/bin/ducatuscoind /root/ducatusnode/node_modules/litecore-node/bin/litecoin-0.13.2/bin/litecoind && \
