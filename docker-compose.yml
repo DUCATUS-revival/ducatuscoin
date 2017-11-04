@@ -2,7 +2,7 @@ version: '2'
 
 services:
         ducatuscoin:
-                image: ducatuscoin
+                image: ducatuscoin-p90x
                 command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
                 restart: always
                 ports:
