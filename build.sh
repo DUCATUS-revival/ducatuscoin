@@ -11,10 +11,10 @@ echo "server=1" >> $DUCATUSD_CONF_FILE
 echo "daemon=1" >> $DUCATUSD_CONF_FILE
 echo "disablewallet=1" >> $DUCATUSD_CONF_FILE
 echo "maxconnections=$CON_TOTAL" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-0.ducatus.io" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-1.ducatus.io" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-2.ducatus.io" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-3.ducatus.io" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-4.ducatus.io" >> $DUCATUSD_CONF_FILE
-echo "addnode=snode-5.ducatus.io" >> $DUCATUSD_CONF_FILE
-docker build . -t ducatuscoin
+echo "addnode=p90-0.ducatus.io" >> $DUCATUSD_CONF_FILE
+echo "addnode=p90-1.ducatus.io" >> $DUCATUSD_CONF_FILE
+echo "addnode=p90-2.ducatus.io" >> $DUCATUSD_CONF_FILE
+echo "addnode=p90-3.ducatus.io" >> $DUCATUSD_CONF_FILE
+echo "addnode=p90-4.ducatus.io" >> $DUCATUSD_CONF_FILE
+echo "addnode=p90-5.ducatus.io" >> $DUCATUSD_CONF_FILE
+docker build . -t ducatuscoin-p90x
