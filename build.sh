@@ -9,7 +9,6 @@ echo "rpcpassword=$RPC_PASSWORD" >> $DUCATUSD_CONF_FILE
 echo "rpcallowip=127.0.0.1" >> $DUCATUSD_CONF_FILE
 echo "server=1" >> $DUCATUSD_CONF_FILE
 echo "daemon=1" >> $DUCATUSD_CONF_FILE
-echo "disablewallet=1" >> $DUCATUSD_CONF_FILE
 echo "maxconnections=$CON_TOTAL" >> $DUCATUSD_CONF_FILE
 echo "addnode=snode-0.p90.ducatus.io" >> $DUCATUSD_CONF_FILE
 echo "addnode=snode-1.p90.ducatus.io" >> $DUCATUSD_CONF_FILE
