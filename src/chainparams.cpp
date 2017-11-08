@@ -50,7 +50,7 @@ static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesi
  */
 static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
 {
-    const char* pszTimestamp = "P90X is a complete 90-day home fitness system designed to get you in the best shape of your life.";
+    const char* pszTimestamp = "P90X is a complete 90-day home fitness system";
 
     //const char* pszTimestamp = "NY Times 05/Oct/2011 Steve Jobs, Apple’s Visionary, Dies at 56";
     const CScript genesisOutputScript = CScript() << ParseHex("040184710fa689ad5023690c80f3a49c8f13f8d45b8c857fbcbc8bc4a8e4d3eb4b10f4d4604fa08dce601aaf0f470216fe1b51850b4acf21b179c45070ac7b03a9") << OP_CHECKSIG;
@@ -118,10 +118,10 @@ public:
         nDefaultPort = 9691;
         nPruneAfterHeight = 100000;
 
-        genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN); 
+        genesis = CreateGenesisBlock(1483501153, 2, 0x207fffff, 1, 50 * COIN); 
         consensus.hashGenesisBlock = genesis.GetHash();
-        assert(consensus.hashGenesisBlock == uint256S("0x275170be7e5a5f1ec70543ea404fb2dd2b160840e5fabf2f1979b75fac404a0f"));
-        assert(genesis.hashMerkleRoot == uint256S("0x82da5381ef129f46c3fa95afd4c54392b7bede38bb7355f265a090cf30d3f7f1"));
+        assert(consensus.hashGenesisBlock == uint256S("0x0052eabed6d856745fb06a646365ae3cfcd7ca0025a68479bc59047848e4f120"));
+        assert(genesis.hashMerkleRoot == uint256S("0x4c3cdbbc130856bc4f15d285b9b379b08a808568ac6f7f1b108f3d746df5ce2e"));
 
         // Note that of those with the service bits flag, most only support a subset of possible options
 
@@ -167,7 +167,7 @@ public:
 	//};
 	checkpointData = (CCheckpointData){
 		boost::assign::map_list_of
-			( 0, uint256S("0x275170be7e5a5f1ec70543ea404fb2dd2b160840e5fabf2f1979b75fac404a0f")),
+			( 0, uint256S("0x0052eabed6d856745fb06a646365ae3cfcd7ca0025a68479bc59047848e4f120")),
 			0,
 			0,
 			0
@@ -176,7 +176,6 @@ public:
     }
 };
 static CMainParams mainParams;
-
 /**
  * Testnet (v4)
  */
@@ -369,4 +368,3 @@ void UpdateRegtestBIP9Parameters(Consensus::DeploymentPos d, int64_t nStartTime,
 {
 	regTestParams.UpdateBIP9Parameters(d, nStartTime, nTimeout);
 }
-
