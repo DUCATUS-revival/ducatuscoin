@@ -48,7 +48,7 @@ static const bool DEFAULT_WHITELISTRELAY = true;
 /** Default for DEFAULT_WHITELISTFORCERELAY. */
 static const bool DEFAULT_WHITELISTFORCERELAY = true;
 /** Default for -minrelaytxfee, minimum relay fee for transactions */
-static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 100000;
+static const unsigned int DEFAULT_MIN_RELAY_TX_FEE = 10;
 //! -maxtxfee default
 static const CAmount DEFAULT_TRANSACTION_MAXFEE = 0.1 * COIN;
 //! Discourage users to set fees higher than this amount (in satoshis) per kB
@@ -70,7 +70,7 @@ static const unsigned int DEFAULT_DESCENDANT_LIMIT = 25;
 /** Default for -limitdescendantsize, maximum kilobytes of in-mempool descendants */
 static const unsigned int DEFAULT_DESCENDANT_SIZE_LIMIT = 101;
 /** Default for -mempoolexpiry, expiration time for mempool transactions in hours */
-static const unsigned int DEFAULT_MEMPOOL_EXPIRY = 72;
+static const unsigned int DEFAULT_MEMPOOL_EXPIRY = 12;
 /** The maximum size of a blk?????.dat file (since 0.8) */
 static const unsigned int MAX_BLOCKFILE_SIZE = 0x8000000; // 128 MiB
 /** The pre-allocation chunk size for blk?????.dat files (since 0.8) */
@@ -125,7 +125,7 @@ static const int64_t BLOCK_DOWNLOAD_TIMEOUT_BASE = 1000000;
 static const int64_t BLOCK_DOWNLOAD_TIMEOUT_PER_PEER = 500000;
 
 static const unsigned int DEFAULT_LIMITFREERELAY = 15;
-static const bool DEFAULT_RELAYPRIORITY = true;
+static const bool DEFAULT_RELAYPRIORITY = false;
 static const int64_t DEFAULT_MAX_TIP_AGE = 24 * 60 * 60;
 
 /** Default for -permitbaremultisig */
