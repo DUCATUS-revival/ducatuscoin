@@ -560,6 +560,8 @@ static bool rest_getutxos(HTTPRequest* req, const std::string& strURIPart)
         return true;
     }
 
+    typedef std::pair<string, int32_t> Pair;
+
     case RF_JSON: {
         UniValue objGetUTXOResponse(UniValue::VOBJ);
 
