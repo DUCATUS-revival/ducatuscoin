@@ -16,9 +16,10 @@ RUN add-apt-repository -y ppa:bitcoin/bitcoin
 RUN apt-get update -y
 RUN apt-get install -y bitcoind git
 RUN apt-get install -y libdb4.8-dev libdb4.8++-dev
+RUN apt-get install -y wget
 
 RUN wget https://github.com/jgarzik/univalue/releases/download/v1.0.4/univalue-1.0.4.tar.gz; \
-	tar xvzf univalue-1.0.4.tar.gz: \
+	tar xvzf univalue-1.0.4.tar.gz; \
 	cd univalue-1.0.4; \
 	./autogen.sh; \
 	./configure; \
