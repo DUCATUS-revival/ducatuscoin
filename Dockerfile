@@ -1,7 +1,11 @@
 # bitcoin-testnet-box docker image
 
 # Ubuntu 14.04 LTS (Trusty Tahr)
-FROM ubuntu:14.04
+#FROM ubuntu:14.04
+FROM ubuntu:18.04
+
+ENV TZ=Europe/Moscow
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # add bitcoind from the official PPA
 RUN apt-get update
@@ -11,7 +15,8 @@ RUN apt-get install -y autoconf
 RUN apt-get install -y libtool
 RUN apt-get install -y libboost-all-dev
 RUN apt-get install -y wget
-RUN apt-get install -y software-properties-common python-software-properties
+#RUN apt-get install -y software-properties-common python-software-properties
+RUN apt-get install -y software-properties-common
 RUN add-apt-repository -y ppa:bitcoin/bitcoin
 RUN apt-get update -y
 RUN apt-get install -y bitcoind git
