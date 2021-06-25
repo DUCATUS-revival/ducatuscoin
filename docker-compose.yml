@@ -9,8 +9,6 @@ services:
                         - "9690:9690"
                         - "9691:9691"
                 volumes:
-                        - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-                        - ducatuscoin-volume:/root/.ducatuscoin
-
+                        - ./data/:/root/.ducatuscoin
 volumes:
         ducatuscoin-volume:

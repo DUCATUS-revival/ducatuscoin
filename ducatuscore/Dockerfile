@@ -12,7 +12,7 @@ RUN apt-get install -y libtool
 RUN apt-get install -y libboost-all-dev
 RUN apt-get install -y wget
 RUN apt-get install -y software-properties-common python-software-properties
-RUN add-apt-repository -y ppa:bitcoin/bitcoin
+RUN add-apt-repository -y ppa:luke-jr/bitcoincore
 RUN apt-get update -y
 RUN apt-get install -y bitcoind git
 RUN apt-get install -y libdb4.8-dev libdb4.8++-dev
