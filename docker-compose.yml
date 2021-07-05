@@ -3,7 +3,7 @@ version: '2'
 services:
 
   ducatuscoin:
-    image: ducatuscoin
+    image: rocknblock/ducatuscoin:master
     build:
         context: .
         dockerfile: Dockerfile

@@ -34,4 +34,4 @@
       cmd: >
         docker-compose
         -f {{ workdir }}/{{ docker_compose_file }}
-        up --build -d
+        up -d
