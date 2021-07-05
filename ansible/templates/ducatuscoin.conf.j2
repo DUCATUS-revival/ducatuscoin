@@ -1,0 +1,18 @@
+rpcuser={{rpc_user}}
+rpcpassword={{rpc_password}}
+rpcallowip=0.0.0.0/0
+server=1
+daemon=1
+disablewallet=1
+maxconnections=3130
+
+addnode=194.135.84.108
+addnode=176.223.141.168
+addnode=188.40.34.126
+
+{% for node in groups['nodes'] %}
+{% if hostvars[node]['ansible_host'] != ansible_host  %}
+addnode={{ hostvars[node]['ansible_host'] }}
+{% endif %}
+{% endfor %}
+

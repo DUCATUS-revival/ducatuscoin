@@ -1,0 +1,26 @@
+- name: Setup common backend configurations
+  hosts: all
+  vars_files:
+    - "../vars/nodes.yml"
+
+
+  tasks:
+    - name: Create directory
+      file:
+        path: "/var/www"
+        state: directory
+
+    - name: Clone repository
+      git:
+        repo: https://github.com/DUCATUS-revival/ducatuscoin.git
+        dest: "{{ workdir }}"
+
+    - name: Set config
+      template: 
+        src: ../templates/ducatuscoin.conf.j2
+        dest: "{{ workdir }}/ducatuscoin.conf"
+        owner: "{{ ansible_user }}"
+        group: "{{ ansible_user }}"
+        mode: 0644
+        
+    

@@ -1,6 +1,8 @@
 *.tar.gz
 #univalue/
 
+ansible/hosts.yml
+
 *.exe
 src/litecoin
 src/litecoind
