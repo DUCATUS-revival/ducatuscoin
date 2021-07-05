@@ -2,6 +2,7 @@
 #univalue/
 
 ansible/hosts.yml
+data/
 
 *.exe
 src/litecoin
