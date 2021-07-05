@@ -62,7 +62,6 @@ FROM build-ducatus AS set-workdir
 
 RUN mkdir -p /root/ducatuscoin-tumbler
 RUN mkdir -p /root/.ducatuscoin/
-ADD ./docker-start-point.sh /root/
 ADD ./ducatuscoin.conf /root/.ducatuscoin/
 ADD ./ducatuscoin.conf /root/
 
