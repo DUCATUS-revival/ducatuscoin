@@ -7,7 +7,7 @@ MAINTAINER Sean Lavine <lavis88@gmail.com>
 # add bitcoind from the official PPA
 RUN apt-get update
 RUN apt-get install --yes software-properties-common
-RUN add-apt-repository --yes ppa:bitcoin/bitcoin
+RUN add-apt-repository --yes ppa:luke-jr/bitcoincore
 RUN apt-get update
 
 # install bitcoind (from PPA) and make

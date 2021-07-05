@@ -1,0 +1,2 @@
+workdir: /var/www/ducatuscoin
+docker_compose_file: docker-compose.yml

@@ -1,16 +1,20 @@
 version: '2'
 
 services:
-        ducatuscoin:
-                image: ducatuscoin
-                command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
-                restart: always
-                ports:
-                        - "9690:9690"
-                        - "9691:9691"
-                volumes:
-                        - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-                        - ducatuscoin-volume:/root/.ducatuscoin
 
-volumes:
-        ducatuscoin-volume:
+  ducatuscoin:
+    image: ducatuscoin
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+    restart: always
+    ports:
+      - "9690:9690"
+      - "9691:9691"
+    volumes:
+      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./data:/root/.ducatuscoin
+
+#volumes:
+#        ducatuscoin-volume:
