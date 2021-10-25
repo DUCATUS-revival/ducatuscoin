@@ -135,3 +135,6 @@ data-dir/
 
 # Config is now generated at build time
 ducatuscoin.conf
+
+testnet-conf/ducatuscoin1.conf
+testnet-conf/ducatuscoin2.conf

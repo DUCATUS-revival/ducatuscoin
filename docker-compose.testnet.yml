@@ -1,0 +1,37 @@
+version: '2'
+
+services:
+
+  ducatuscoin1:
+    image: rnbdeploy/ducatuscoin:master
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+    restart: always
+    ports:
+      - "9690:9690"
+      - "9691:9691"
+    volumes:
+      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./testnet-conf/node1/ducatuscoin.conf
+      - ./.docker-testnet/data1:/root/.ducatuscoin
+
+ducatuscoin2:
+    image: rnbdeploy/ducatuscoin:master
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+    restart: always
+    ports:
+      - "9690:9690"
+      - "9691:9691"
+    volumes:
+      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./testnet-conf/node2/ducatuscoin.conf
+      - ./.docker-testnet/data2:/root/.ducatuscoin
+
+
+#volumes:
+#        ducatuscoin-volume:

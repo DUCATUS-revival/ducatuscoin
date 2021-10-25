@@ -9,7 +9,7 @@ on:
   # schedule:
   #  - cron: '28 14 * * *'
   push:
-    branches: [ master ]
+    # branches: [ master ]
     # Publish semver tags as releases.
     tags: [ 'v*.*.*' ]
   pull_request:
@@ -38,7 +38,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
         with:
-          images: rocknblock/ducatuscoin
+          images: rnbdeploy/ducatuscoin
 
       - name: Generate base configuration file
         run: bash setup-image.sh
