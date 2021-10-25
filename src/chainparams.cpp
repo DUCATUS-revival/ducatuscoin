@@ -218,10 +218,10 @@ class CTestNetParams : public CChainParams {
 			// The best chain should have at least this much work.
 			consensus.nMinimumChainWork = uint256S("0x00000000000000000000000000000000000000000000000000000000872d04d7");
 
-			pchMessageStart[0] = 0xfd;
-			pchMessageStart[1] = 0xd2;
-			pchMessageStart[2] = 0xc8;
-			pchMessageStart[3] = 0xf1;
+			pchMessageStart[0] = 0xed;
+			pchMessageStart[1] = 0xe2;
+			pchMessageStart[2] = 0xd8;
+			pchMessageStart[3] = 0xf2;
 			nDefaultPort = 19692;
 			nPruneAfterHeight = 1000;
 
@@ -238,10 +238,10 @@ class CTestNetParams : public CChainParams {
 			//vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-b..loshan.co.uk", true));
 			//vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed-testnet.thrasher.io", true));
 
-			base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
-			base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-			base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
-			base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+			base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,112);
+			base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,197);
+			base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,59);
+			base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,240);
 			base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
 			base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
@@ -299,10 +299,10 @@ class CRegTestParams : public CChainParams {
 			// The best chain should have at least this much work.
 			consensus.nMinimumChainWork = uint256S("0x00");
 
-			pchMessageStart[0] = 0xfa;
-			pchMessageStart[1] = 0xbf;
-			pchMessageStart[2] = 0xb5;
-			pchMessageStart[3] = 0xda;
+			pchMessageStart[0] = 0xed;
+			pchMessageStart[1] = 0xe2;
+			pchMessageStart[2] = 0xd8;
+			pchMessageStart[3] = 0xf2;
 			nDefaultPort = 19444;
 			nPruneAfterHeight = 1000;
 
@@ -328,10 +328,10 @@ class CRegTestParams : public CChainParams {
 					0
 			};
 
-			base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
-			base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
-			base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,58);
-			base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,239);
+			base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,112);
+			base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,197);
+			base58Prefixes[SCRIPT_ADDRESS2] = std::vector<unsigned char>(1,59);
+			base58Prefixes[SECRET_KEY] =     std::vector<unsigned char>(1,240);
 			base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
 			base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 		}

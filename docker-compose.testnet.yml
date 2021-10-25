@@ -10,43 +10,43 @@ services:
     command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
     restart: always
     ports:
-      - "9690:9690"
-      - "9691:9691"
+      - "18335:18335"
+      - "18336:18336"
     volumes:
       # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./.docker-testnet/data1:/root/.ducatuscoin
 
-ducatuscoin2:
-    image: rnbdeploy/ducatuscoin:master
-    build:
-        context: .
-        dockerfile: Dockerfile
-    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
-    restart: always
-    ports:
-      - "9690:9690"
-      - "9691:9691"
-    volumes:
-      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./.docker-testnet/data2:/root/.ducatuscoin
+  ducatuscoin2:
+      image: rnbdeploy/ducatuscoin:master
+      build:
+          context: .
+          dockerfile: Dockerfile
+      command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+      restart: always
+      ports:
+        - "28335:28335"
+        - "28336:28336"
+      volumes:
+        # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+        - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
+        - ./.docker-testnet/data2:/root/.ducatuscoin
 
   agent:
     image: portainer/agent:2.9.1
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - /var/lib/docker/volumes:/var/lib/docker/volumes
-  
+
   portainer:
     image: portainer/portainer-ce:2.9.1
-    command: -H tcp://tasks.agent:9001 --tlsskipverify
+    command: -H tcp://agent:9001 --tlsskipverify
     ports:
       - "9443:9443"
       - "9000:9000"
       - "8000:8000"
     volumes:
-      - ./docker-testnet/portainer_data:/data
+      - ./.docker-testnet/portainer_data:/data
   
 
 #volumes:
