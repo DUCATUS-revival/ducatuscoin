@@ -191,7 +191,7 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 100;
 			consensus.BIP34Height = -1;
 			consensus.BIP34Hash = uint256S("");
-			consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 			consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
 			consensus.nPowTargetSpacing = 2.5 * 60;
 			consensus.fPowAllowMinDifficultyBlocks = true;
