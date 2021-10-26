@@ -7,7 +7,7 @@ services:
     build:
         context: .
         dockerfile: Dockerfile
-    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
     restart: always
     ports:
       - "18335:18335"
@@ -15,14 +15,14 @@ services:
     volumes:
       # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./.docker/data1:/root/.ducatuscoin
+      - ./.docker/data1:/root/.ducatuscoin/testnet4
 
   ducatuscoin2:
       image: rnbdeploy/ducatuscoin:latest
       build:
           context: .
           dockerfile: Dockerfile
-      command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/debug.log'
+      command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
       restart: always
       ports:
         - "28335:28335"
@@ -30,7 +30,7 @@ services:
       volumes:
         # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
         - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-        - ./.docker/data2:/root/.ducatuscoin
+        - ./.docker/data2:/root/.ducatuscoin/testnet4
 
   agent:
     image: portainer/agent:2.9.1
