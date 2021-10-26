@@ -3,7 +3,7 @@ version: '2'
 services:
 
   ducatuscoin1:
-    image: rnbdeploy/ducatuscoin:master
+    image: rnbdeploy/ducatuscoin:latest
     build:
         context: .
         dockerfile: Dockerfile
@@ -15,10 +15,10 @@ services:
     volumes:
       # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./.docker-testnet/data1:/root/.ducatuscoin
+      - ./.docker/data1:/root/.ducatuscoin
 
   ducatuscoin2:
-      image: rnbdeploy/ducatuscoin:master
+      image: rnbdeploy/ducatuscoin:latest
       build:
           context: .
           dockerfile: Dockerfile
@@ -30,7 +30,7 @@ services:
       volumes:
         # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
         - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-        - ./.docker-testnet/data2:/root/.ducatuscoin
+        - ./.docker/data2:/root/.ducatuscoin
 
   agent:
     image: portainer/agent:2.9.1
@@ -46,7 +46,7 @@ services:
       - "9000:9000"
       - "8000:8000"
     volumes:
-      - ./.docker-testnet/portainer_data:/data
+      - ./.docker/portainer_data:/data
   
 
 #volumes:

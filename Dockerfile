@@ -62,8 +62,8 @@ FROM build-ducatus AS set-workdir
 
 RUN mkdir -p /root/ducatuscoin-tumbler
 RUN mkdir -p /root/.ducatuscoin/
-ADD ./ducatuscoin.conf /root/.ducatuscoin/
-ADD ./ducatuscoin.conf /root/
+# ADD ./ducatuscoin.conf /root/.ducatuscoin/
+# ADD ./ducatuscoin.conf /root/
 
 # VOLUME /root/.ducatuscoin
 

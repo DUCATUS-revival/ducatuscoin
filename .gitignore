@@ -139,4 +139,4 @@ ducatuscoin.conf
 testnet-conf/ducatuscoin1.conf
 testnet-conf/ducatuscoin2.conf
 
-.docker-testnet/
+.docker/
