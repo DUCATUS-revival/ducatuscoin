@@ -194,7 +194,7 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 100;
 			consensus.BIP34Height = -1;
 			consensus.BIP34Hash = uint256S("");
-			consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 			consensus.nPowTargetTimespan = 3.5 * 24 * 60 * 60; // 3.5 days
 			consensus.nPowTargetSpacing = 2.5 * 60;
 			consensus.fPowAllowMinDifficultyBlocks = true;
@@ -226,8 +226,8 @@ class CTestNetParams : public CChainParams {
 			nPruneAfterHeight = 1000;
 
 			//genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
-			genesis = CreateGenesisBlock(1494809358, 293345, 0x1e0ffff0, 1, 50 * COIN);
-			consensus.hashGenesisBlock = genesis.GetHash();
+			genesis = CreateGenesisBlock(1619494752, 721332, 0x1e0ffff0, 1, 50 * COIN);
+			consensus.hashGenesisBlock = genesis.GetPoWHash();
 			//assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
 			//assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
 
