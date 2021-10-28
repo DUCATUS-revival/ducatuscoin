@@ -234,14 +234,14 @@ class CTestNetParams : public CChainParams {
 			consensus.hashGenesisBlock = uint256S("0x01");
 			if (true && genesis.GetHash() != consensus.hashGenesisBlock)
 					{
-						Logprintf("recalculating params for mainnet.\n");
-						Logprintf("old mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-						Logprintf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
+						printf("recalculating params for mainnet.\n");
+						printf("old testnet genesis nonce: %s\n", genesis.nNonce);
+						printf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
 						// deliberately empty for loop finds nonce value.
 						for(genesis.nNonce == 0; genesis.GetHash() > consensus.powLimit; genesis.nNonce++){ } 
-						Logprintf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-						Logprintf("new mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
-						Logprintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+						printf("new testnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
+						printf("new testnet genesis nonce: %s\n", genesis.nNonce);
+						printf("new testnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
 					}
 			consensus.hashGenesisBlock = genesis.GetHash();
 			assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
