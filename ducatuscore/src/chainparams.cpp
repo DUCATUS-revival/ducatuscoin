@@ -194,7 +194,7 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 1000;
 			consensus.BIP34Height = 710000;
 			consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-			consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 			consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
 			consensus.nPowTargetSpacing = 1 * 60; // 1 minute
 			consensus.fPowAllowMinDifficultyBlocks = false;
@@ -238,7 +238,7 @@ class CTestNetParams : public CChainParams {
 						Logprintf("old mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
 						Logprintf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
 						// deliberately empty for loop finds nonce value.
-						for(genesis.nNonce == 0; genesis.GetHash() > bnProofOfWorkLimit; genesis.nNonce++){ } 
+						for(genesis.nNonce == 0; genesis.GetHash() > consensus.powLimit; genesis.nNonce++){ } 
 						Logprintf("new mainnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
 						Logprintf("new mainnet genesis nonce: %s\n", genesis.nNonce.ToString().c_str());
 						Logprintf("new mainnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
