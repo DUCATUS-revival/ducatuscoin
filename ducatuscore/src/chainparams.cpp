@@ -231,7 +231,7 @@ class CTestNetParams : public CChainParams {
 
 			//genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
 			genesis = CreateGenesisBlock(1494809358, 293345, 0x1e0ffff0, 1, 50 * COIN);
-			consensus.hashGenesisBlock = uint256("0x01")
+			consensus.hashGenesisBlock = uint256S("0x01")
 			if (true && genesis.GetHash() != hashGenesisBlock)
 					{
 						Logprintf("recalculating params for mainnet.\n");
