@@ -222,18 +222,17 @@ class CTestNetParams : public CChainParams {
 			nDefaultPort = 19692;
 			nPruneAfterHeight = 1000;
 
-			//genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
-			genesis = CreateGenesisBlock(1619494752, 721332, 0x1e0ffff0, 1, 50 * COIN);
-			consensus.hashGenesisBlock = genesis.GetPoWHash();			
-			//assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
-			//assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
+			genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
+			consensus.hashGenesisBlock = genesis.GetHash();
+			// assert(consensus.hashGenesisBlock == uint256S("0x4966625a4b2851d9fdee139e56211a0d88575f59ed816ff5e6a63deb4e3e29a0"));
+			// assert(genesis.hashMerkleRoot == uint256S("0x97ddfbbae6be97fd6cdf3e7ca13232a3afff2353e29badfab7f73011edd4ced9"));
 
 			vFixedSeeds.clear();
 			vSeeds.clear();
 			// nodes with support for servicebits filtering should be at the top
-			//vSeeds.push_back(CDNSSeedData("tools.com", "testnet-seed.tools.com"));
-			//vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-b..loshan.co.uk", true));
-			//vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed-testnet.thrasher.io", true));
+			// vSeeds.push_back(CDNSSeedData("litecointools.com", "testnet-seed.litecointools.com"));
+			// vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-b.litecoin.loshan.co.uk", true));
+			// vSeeds.push_back(CDNSSeedData("thrasher.io", "dnsseed-testnet.thrasher.io", true));
 
 			base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1,111);
 			base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1,196);
