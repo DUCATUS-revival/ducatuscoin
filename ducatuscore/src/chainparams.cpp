@@ -232,17 +232,38 @@ class CTestNetParams : public CChainParams {
 			//genesis = CreateGenesisBlock(1486949366, 293345, 0x1e0ffff0, 1, 50 * COIN);
 			genesis = CreateGenesisBlock(1494809358, 293345, 0x1e0ffff0, 1, 50 * COIN);
 			consensus.hashGenesisBlock = uint256S("0x01");
-			if (true && genesis.GetHash() != consensus.hashGenesisBlock)
+			if (true && genesis.GetHash() != hashGenesisBlock)
+			{
+				printf("Searching for genesis block...\n");
+				// This will figure out a valid hash and Nonce if you're
+				// creating a different genesis block:
+				uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
+				uint256 thash;
+				char scratchpad[SCRYPT_SCRATCHPAD_SIZE];
+
+				loop
+				{
+					scrypt_1024_1_1_256_sp_generic(BEGIN(genesis.nVersion), BEGIN(thash), scratchpad);
+					if (thash <= hashTarget)
+						break;
+					if ((genesis.nNonce & 0xFFF) == 0)
 					{
-						printf("recalculating params for mainnet.\n");
-						printf("old testnet genesis nonce: %s\n", genesis.nNonce);
-						printf("old mainnet genesis hash:  %s\n", consensus.hashGenesisBlock.ToString().c_str());
-						// deliberately empty for loop finds nonce value.
-						for(genesis.nNonce == 0; genesis.GetHash() > consensus.powLimit; genesis.nNonce++){ } 
-						printf("new testnet genesis merkle root: %s\n", genesis.hashMerkleRoot.ToString().c_str());
-						printf("new testnet genesis nonce: %s\n", genesis.nNonce);
-						printf("new testnet genesis hash: %s\n", genesis.GetHash().ToString().c_str());
+						printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
 					}
+					++genesis.nNonce;
+					if (genesis.nNonce == 0)
+					{
+						printf("NONCE WRAPPED, incrementing time\n");
+						++genesis.nTime;
+					}
+				}
+				printf("genesis.nTime = %u \n", genesis.nTime);
+				printf("genesis.nNonce = %u \n", genesis.nNonce);
+				printf("genesis.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+			}
+
+
+			genesis.print();
 			consensus.hashGenesisBlock = genesis.GetHash();
 			assert(consensus.hashGenesisBlock == uint256S("0x0de54fa2bb4503eef62853c43c99dd55b9ab286002c844357251e5d969128b9c"));
 			assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
