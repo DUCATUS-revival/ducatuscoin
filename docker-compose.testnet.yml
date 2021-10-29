@@ -19,20 +19,20 @@ services:
 
     
 
-  # ducatuscoin2:
-  #   image: rnbdeploy/ducatuscoin:latest
-  #   build:
-  #       context: .
-  #       dockerfile: Dockerfile
-  #   command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
-  #   restart: always
-  #   ports:
-  #     - "28335:28335"
-  #     - "28336:28336"
-  #   volumes:
-  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #     - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #     - ./.docker/data2:/root/.ducatuscoin/testnet4
+  ducatuscoin2:
+    image: rnbdeploy/ducatuscoin:latest
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
+    restart: always
+    ports:
+      - "28335:28335"
+      - "28336:28336"
+    volumes:
+      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./.docker/data2:/root/.ducatuscoin/testnet4
 
 
   # ducatuscoin1:
