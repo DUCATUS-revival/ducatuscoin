@@ -17,20 +17,73 @@ services:
       - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./.docker/data1:/root/.ducatuscoin/testnet4
 
-  ducatuscoin2:
-      image: rnbdeploy/ducatuscoin:latest
-      build:
-          context: .
-          dockerfile: Dockerfile
-      command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
-      restart: always
-      ports:
-        - "28335:28335"
-        - "28336:28336"
-      volumes:
-        # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-        - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-        - ./.docker/data2:/root/.ducatuscoin/testnet4
+    
+
+  # ducatuscoin2:
+  #   image: rnbdeploy/ducatuscoin:latest
+  #   build:
+  #       context: .
+  #       dockerfile: Dockerfile
+  #   command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
+  #   restart: always
+  #   ports:
+  #     - "28335:28335"
+  #     - "28336:28336"
+  #   volumes:
+  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #     - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #     - ./.docker/data2:/root/.ducatuscoin/testnet4
+
+
+  # ducatuscoin1:
+  #   image: uphold/litecoin-core:0.13
+  #   command: 
+  #     -rpcuser=ducatustest
+  #     -prcpassword=ducatuspwd
+  #     -rpcallowip=0.0.0.0/0
+  #     -server=1
+  #     -printtoconsole
+  #     -testnet=1
+  #     -maxconnections=1000
+  #     -port=18335
+  #     -rpcport=18336
+  #     -discover=0
+  #     -addnode=ducatuscoin2:28335
+  #     -debug=1
+  #   restart: always
+  #   ports:
+  #     - "18335:18335"
+  #     - "18336:18336"
+  #   volumes:
+  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #     # - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #      - ./.docker/data1:/home/litecoin/.litecoin
+  
+  # ducatuscoin2:
+  #   image: uphold/litecoin-core:0.13
+  #   command: 
+  #     -rpcuser=ducatustest2
+  #     -prcpassword=ducatuspwd2
+  #     -rpcallowip=0.0.0.0/0
+  #     -server=1
+  #     -printtoconsole
+  #     -testnet=1
+  #     -maxconnections=1000
+  #     -port=28335
+  #     -rpcport=28336
+  #     -discover=0
+  #     -addnode=ducatuscoin1:18335
+  #     -debug=1
+  #   restart: always
+  #   ports:
+  #     - "28335:28335"
+  #     - "28336:28336"
+  #   volumes:
+  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #     # - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
+  #      - ./.docker/data2:/home/litecoin/.litecoin
+
+
 
   agent:
     image: portainer/agent:2.9.1
