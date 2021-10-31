@@ -2,88 +2,33 @@ version: '2'
 
 services:
 
-  ducatuscoin1:
+  ducatuscoin_node:
     image: rnbdeploy/ducatuscoin:latest
     build:
         context: .
         dockerfile: Dockerfile
-    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
+    # command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
+    # command: bash -c "sleep 10000"
+    command: ducatuscoind
     restart: always
     ports:
       - "18335:18335"
       - "18336:18336"
     volumes:
       # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./.docker/data1:/root/.ducatuscoin/testnet4
+      - ./testnet-conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./.docker/node_data:/root/.ducatuscoin/testnet4
 
-    
-
-  ducatuscoin2:
+  ducatuscoin_miner:
     image: rnbdeploy/ducatuscoin:latest
     build:
         context: .
         dockerfile: Dockerfile
-    command: bash -c 'ducatuscoind; sleep 1; tail -f /root/.ducatuscoin/testnet4/debug.log'
+    command: bash automine.sh
     restart: always
-    ports:
-      - "28335:28335"
-      - "28336:28336"
+
     volumes:
-      # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./testnet-conf/ducatuscoin2.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./.docker/data2:/root/.ducatuscoin/testnet4
-
-
-  # ducatuscoin1:
-  #   image: uphold/litecoin-core:0.13
-  #   command: 
-  #     -rpcuser=ducatustest
-  #     -prcpassword=ducatuspwd
-  #     -rpcallowip=0.0.0.0/0
-  #     -server=1
-  #     -printtoconsole
-  #     -testnet=1
-  #     -maxconnections=1000
-  #     -port=18335
-  #     -rpcport=18336
-  #     -discover=0
-  #     -addnode=ducatuscoin2:28335
-  #     -debug=1
-  #   restart: always
-  #   ports:
-  #     - "18335:18335"
-  #     - "18336:18336"
-  #   volumes:
-  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #     # - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #      - ./.docker/data1:/home/litecoin/.litecoin
-  
-  # ducatuscoin2:
-  #   image: uphold/litecoin-core:0.13
-  #   command: 
-  #     -rpcuser=ducatustest2
-  #     -prcpassword=ducatuspwd2
-  #     -rpcallowip=0.0.0.0/0
-  #     -server=1
-  #     -printtoconsole
-  #     -testnet=1
-  #     -maxconnections=1000
-  #     -port=28335
-  #     -rpcport=28336
-  #     -discover=0
-  #     -addnode=ducatuscoin1:18335
-  #     -debug=1
-  #   restart: always
-  #   ports:
-  #     - "28335:28335"
-  #     - "28336:28336"
-  #   volumes:
-  #     # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #     # - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
-  #      - ./.docker/data2:/home/litecoin/.litecoin
-
-
+      - ./testnet-conf/ducatuscoin1.conf:/root/.ducatuscoin/ducatuscoin.conf
 
   agent:
     image: portainer/agent:2.9.1
@@ -101,6 +46,30 @@ services:
     volumes:
       - ./.docker/portainer_data:/data
   
+  elasticsearch:
+      image: "docker.elastic.co/elasticsearch/elasticsearch:7.2.0"
+      user: "1000"
+      environment:
+          - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+          - "discovery.type=single-node"
+      ports:
+          - "9200:9200"
+      volumes:
+          - ./.docker/elasticsearch_data:/usr/share/elasticsearch/data
+
+  kibana:
+      image: "docker.elastic.co/kibana/kibana:7.2.0"
+      ports:
+          - "5601:5601"
+
+  filebeat:
+      image: "docker.elastic.co/beats/filebeat:7.2.0"
+      user: root
+      volumes:
+          - ./filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+          - /var/lib/docker:/var/lib/docker:ro
+          - /var/run/docker.sock:/var/run/docker.sock
+
 
 #volumes:
 #        ducatuscoin-volume:

@@ -9,5 +9,3 @@ maxconnections=3130
 port=18335
 rpcport=18336
 
-addnode=ducatuscoin2:28335
-
