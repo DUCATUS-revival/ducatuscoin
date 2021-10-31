@@ -195,7 +195,7 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 1000;
 			consensus.BIP34Height = 710000;
 			consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-			consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 			consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
 			consensus.nPowTargetSpacing = 1 * 60; // 1 minute
 			consensus.fPowAllowMinDifficultyBlocks = false;
@@ -230,16 +230,19 @@ class CTestNetParams : public CChainParams {
 			nDefaultPort = 19692;
 			nPruneAfterHeight = 1000;
 
-			genesis = CreateGenesisBlock(1483501153, 1, 0x207fffff, 1, 50 * COIN); 
+			 //static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+			genesis = CreateGenesisBlock(1635635297, 2422, 0x1f0fffff, 1, 50 * COIN); 
 			consensus.hashGenesisBlock = genesis.GetHash();
 			
 			
+			
+
 			// calculate Genesis Block
 			// Reset genesis
-			consensus.hashGenesisBlock = uint256S("0x");
+			consensus.hashGenesisBlock = uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917");
 			std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
 			if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
-				LogPrintf("Calculating Mainnet Genesis Block:\n");
+				LogPrintf("Calculating Testnet Genesis Block:\n");
 				arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
 				uint256 hash;
 				genesis.nNonce = 0;
@@ -259,21 +262,22 @@ class CTestNetParams : public CChainParams {
 					}
 					if (genesis.nNonce % 10000 == 0)
 					{
-						LogPrintf("Mainnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+						LogPrintf("Testnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
 						// std::cout << strNetworkID << " nonce: " << genesis.nNonce << " time: " << genesis.nTime << " hash: " << genesis.GetHash().ToString().c_str() << "\n";
 					}
 				}
-				std::cout << "Mainnet ---\n";
+				std::cout << "Testnet ---\n";
 				std::cout << "  nonce: " << genesis.nNonce <<  "\n";
 				std::cout << "   time: " << genesis.nTime << "\n";
 				std::cout << "   hash: " << genesis.GetHash().ToString().c_str() << "\n";
 				std::cout << "   merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
-				// Mainnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
+				// Testnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
 			}
-			std::cout << std::string("Finished calculating Mainnet Genesis Block:\n");
+			std::cout << std::string("Finished calculating Testnet Genesis Block:\n");
 
+			
 
-			assert(consensus.hashGenesisBlock == uint256S("0xc05fc63e3800e1067bc03af8874bdbc14d610ec0e9b6de8835d07366a8e5a403"));
+			assert(consensus.hashGenesisBlock == uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917"));
 			assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
 
 
@@ -302,10 +306,10 @@ class CTestNetParams : public CChainParams {
 
 			checkpointData = (CCheckpointData) {
 				boost::assign::map_list_of
-					( 2056, uint256S("0x17748a31ba97afdc9a4f86837a39d287e3e7c7290a08a1d816c5969c78a83289")),
-					1487036370,
-					2057,
-					576
+					( 0, uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917")),
+					0,
+					0,
+					0
 			};
 
 		}
@@ -354,8 +358,8 @@ class CRegTestParams : public CChainParams {
 
 			genesis = CreateGenesisBlock(1296688602, 0, 0x207fffff, 1, 50 * COIN);
 			consensus.hashGenesisBlock = genesis.GetHash();
-			assert(consensus.hashGenesisBlock == uint256S("0xb083dd15b59955281e1edfe902d811d9437bfd41af1e9db9c5b1627e939e263f"));
-			assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
+			//assert(consensus.hashGenesisBlock == uint256S("0xb083dd15b59955281e1edfe902d811d9437bfd41af1e9db9c5b1627e939e263f"));
+			//assert(genesis.hashMerkleRoot == uint256S("0x76eb9308373c704cbd64f78e42be0c5dbf2b5b5d45be43207171d28f2823f91d"));
 
 			vFixedSeeds.clear(); //!< Regtest mode doesn't have any fixed seeds.
 			vSeeds.clear();      //!< Regtest mode doesn't have any DNS seeds.
