@@ -195,7 +195,7 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 1000;
 			consensus.BIP34Height = 710000;
 			consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-			consensus.powLimit = uint256S("00ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
 			consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
 			consensus.nPowTargetSpacing = 1 * 60; // 1 minute
 			consensus.fPowAllowMinDifficultyBlocks = false;
@@ -231,17 +231,18 @@ class CTestNetParams : public CChainParams {
 			nPruneAfterHeight = 1000;
 
 			 //static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
-			genesis = CreateGenesisBlock(1635635297, 2422, 0x1f0fffff, 1, 50 * COIN); 
+			genesis = CreateGenesisBlock(1635635297, 471905, 0x1e0ffff0, 1, 50 * COIN); 
+			// consensus.hashGenesisBlock = genesis.GetPoWHash();
 			consensus.hashGenesisBlock = genesis.GetHash();
-			
-			
-			
+			std::cout << "hash: " << genesis.GetHash().ToString().c_str() << "\n";
+			std::cout << "pow hash: " << genesis.GetPoWHash().ToString().c_str() << "\n";
 
+/*
 			// calculate Genesis Block
 			// Reset genesis
-			consensus.hashGenesisBlock = uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917");
+			consensus.hashGenesisBlock = uint256S("0x000003ed28b873bd23bd63b7fd806300851f304e3162fd16cdbb816ff510cb15");
 			std::cout << std::string("Begin calculating Mainnet Genesis Block:\n");
-			if (true && (genesis.GetHash() != consensus.hashGenesisBlock)) {
+			if (true && (genesis.GetPoWHash() != consensus.hashGenesisBlock)) {
 				LogPrintf("Calculating Testnet Genesis Block:\n");
 				arith_uint256 hashTarget = arith_uint256().SetCompact(genesis.nBits);
 				uint256 hash;
@@ -251,7 +252,7 @@ class CTestNetParams : public CChainParams {
 				// uint256 hashTarget = CBigNum().SetCompact(genesis.nBits).getuint256();
 				// hashTarget.SetCompact(genesis.nBits, &fNegative, &fOverflow).getuint256();
 				// while (genesis.GetHash() > hashTarget)
-				while (UintToArith256(genesis.GetHash()) > hashTarget)
+				while (UintToArith256(genesis.GetPoWHash()) > hashTarget)
 				{
 					++genesis.nNonce;
 					if (genesis.nNonce == 0)
@@ -262,7 +263,7 @@ class CTestNetParams : public CChainParams {
 					}
 					if (genesis.nNonce % 10000 == 0)
 					{
-						LogPrintf("Testnet: nonce %08u: hash = %s \n", genesis.nNonce, genesis.GetHash().ToString().c_str());
+						LogPrintf("Testnet: nonce %08u: pow hash = %s \n", genesis.nNonce, genesis.GetPoWHash().ToString().c_str());
 						// std::cout << strNetworkID << " nonce: " << genesis.nNonce << " time: " << genesis.nTime << " hash: " << genesis.GetHash().ToString().c_str() << "\n";
 					}
 				}
@@ -270,14 +271,15 @@ class CTestNetParams : public CChainParams {
 				std::cout << "  nonce: " << genesis.nNonce <<  "\n";
 				std::cout << "   time: " << genesis.nTime << "\n";
 				std::cout << "   hash: " << genesis.GetHash().ToString().c_str() << "\n";
+				std::cout << "   PoW hash: " << genesis.GetPoWHash().ToString().c_str() << "\n";
 				std::cout << "   merklehash: "  << genesis.hashMerkleRoot.ToString().c_str() << "\n";
 				// Testnet --- nonce: 296277 time: 1390095618 hash: 000000bdd771b14e5a031806292305e563956ce2584278de414d9965f6ab54b0
 			}
 			std::cout << std::string("Finished calculating Testnet Genesis Block:\n");
 
-			
+*/	
 
-			assert(consensus.hashGenesisBlock == uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917"));
+			assert(consensus.hashGenesisBlock == uint256S("0x480a02392a0b1bb075a5abe021030e67450900e6bca4f11201f4049d697173b5"));
 			assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
 
 
@@ -306,7 +308,7 @@ class CTestNetParams : public CChainParams {
 
 			checkpointData = (CCheckpointData) {
 				boost::assign::map_list_of
-					( 0, uint256S("0x000986741358f623001d4e713dc51a68891606781e4ed98c21413c02f8db3917")),
+					( 0, uint256S("0x480a02392a0b1bb075a5abe021030e67450900e6bca4f11201f4049d697173b5")),
 					0,
 					0,
 					0
