@@ -3,7 +3,7 @@
 rpcport=$(cat /root/.ducatuscoin/ducatuscoin.conf | grep rpcport | cut -c 9-  )
 rpcuser=$(cat /root/.ducatuscoin/ducatuscoin.conf | grep rpcuser | cut -c 9-  )
 rpcpassword=$(cat /root/.ducatuscoin/ducatuscoin.conf | grep rpcpassword | cut -c 13-  )
-walletpassphrase=$(head -1 /root/.node_pwd | grep rpcpassword | cut -c 13-  )
+walletpassphrase=$(head -1 /root/.ducatuscoin/node_pwd )
 
 # echo "$rpcport $rpcuser $rpcpassword"
 
