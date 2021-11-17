@@ -140,3 +140,4 @@ testnet-conf/ducatus_test.conf
 
 .docker/
 .env
+.node_pwd
