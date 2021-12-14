@@ -1,0 +1,11 @@
+rpcuser=ducatustest
+rpcpassword=ducatuspwd
+rpcallowip=0.0.0.0/0
+server=1
+daemon=1
+testnet=1
+maxconnections=3130
+
+port=18335
+rpcport=18336
+
