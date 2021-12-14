@@ -16,7 +16,7 @@ services:
       - "18336:18336"
     volumes:
       # - ./ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./testnet-conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./testnet_conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./.docker/node_data:/root/.ducatuscoin/testnet4
 
   ducatuscoin_miner:
@@ -28,8 +28,8 @@ services:
     restart: always
 
     volumes:
-      - ./testnet-conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
-      - ./testnet-conf/node_pwd:/root/.ducatuscoin/node_pwd
+      - ./testnet_conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./testnet_conf/node_pwd.txt:/root/.ducatuscoin/node_pwd
 
   agent:
     image: portainer/agent:2.9.1

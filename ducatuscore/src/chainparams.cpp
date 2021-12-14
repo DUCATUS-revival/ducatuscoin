@@ -195,13 +195,20 @@ class CTestNetParams : public CChainParams {
 			consensus.nMajorityWindow = 1000;
 			consensus.BIP34Height = 710000;
 			consensus.BIP34Hash = uint256S("fa09d204a83a768ed5a7c8d441fa62f2043abf420cff1226c7b4329aeb9d51cf");
-			consensus.powLimit = uint256S("00000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
-			consensus.nPowTargetTimespan = 1 * 1 * 120 * 60; // 16 minutes
+			consensus.powLimit = uint256S("7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff");
+			consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
 			consensus.nPowTargetSpacing = 1 * 30; // 1 minute
-			consensus.fPowAllowMinDifficultyBlocks = false;
-			consensus.fPowNoRetargeting = false;
+			consensus.fPowAllowMinDifficultyBlocks = true;
+			consensus.fPowNoRetargeting = true;
 			consensus.nRuleChangeActivationThreshold = 12; // 75% of 12
-			consensus.nMinerConfirmationWindow = 240; // nPowTargetTimespan / nPowTargetSpacing
+			consensus.nMinerConfirmationWindow = 60; // nPowTargetTimespan / nPowTargetSpacing
+			
+			// consensus.nPowTargetTimespan = 1 * 1 * 16 * 60; // 16 minutes
+			// consensus.nPowTargetSpacing = 1 * 1; // 1 minute
+			// consensus.fPowAllowMinDifficultyBlocks = true;
+			// consensus.fPowNoRetargeting = true;
+			// consensus.nRuleChangeActivationThreshold = 12; // 75% of 16
+			// consensus.nMinerConfirmationWindow = 60; // nPowTargetTimespan / nPowA
 			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].bit = 28;
 			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nStartTime = 1199145601; // January 1, 2008
 			consensus.vDeployments[Consensus::DEPLOYMENT_TESTDUMMY].nTimeout = 1230767999; // December 31, 2008
@@ -283,8 +290,6 @@ class CTestNetParams : public CChainParams {
 			assert(genesis.hashMerkleRoot == uint256S("0x814de9ca2dce68ecbb8d4a71d96a1dd2d5b668dcc256b11e97fd22e95c061249"));
 
 
-			vFixedSeeds.clear();
-			vSeeds.clear();
 			// nodes with support for servicebits filtering should be at the top
 			//vSeeds.push_back(CDNSSeedData("tools.com", "testnet-seed.tools.com"));
 			//vSeeds.push_back(CDNSSeedData("loshan.co.uk", "seed-b..loshan.co.uk", true));
@@ -298,18 +303,19 @@ class CTestNetParams : public CChainParams {
 			base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
 
 			vFixedSeeds = std::vector<SeedSpec6>(pnSeed6_test, pnSeed6_test + ARRAYLEN(pnSeed6_test));
+			vFixedSeeds.clear();
+			vSeeds.clear();
 
-			fMiningRequiresPeers = true;
+			fMiningRequiresPeers = false;
 			fDefaultConsistencyChecks = false;
 			fRequireStandard = false;
-			fMineBlocksOnDemand = false;
+			fMineBlocksOnDemand = true;
 			fTestnetToBeDeprecatedFieldRPC = true;
 
 
 			checkpointData = (CCheckpointData) {
 				boost::assign::map_list_of
 					( 0, uint256S("0x480a02392a0b1bb075a5abe021030e67450900e6bca4f11201f4049d697173b5")),
-					0,
 					0,
 					0
 			};

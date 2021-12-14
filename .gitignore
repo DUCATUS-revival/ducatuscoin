@@ -137,7 +137,8 @@ data-dir/
 ducatuscoin.conf
 
 testnet-conf/ducatus_test.conf
+testnet_conf/ducatus_test.conf
 
 .docker/
 .env
-.node_pwd
+.node_pwd*
