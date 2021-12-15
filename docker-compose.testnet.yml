@@ -26,8 +26,8 @@ services:
         dockerfile: Dockerfile
     command: bash automine.sh
     restart: always
-
     volumes:
+      - ./automine.sh:/root/ducatuscoin/automine.sh
       - ./testnet_conf/ducatus_test.conf:/root/.ducatuscoin/ducatuscoin.conf
       - ./testnet_conf/node_pwd.txt:/root/.ducatuscoin/node_pwd
 

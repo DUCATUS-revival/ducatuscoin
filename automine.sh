@@ -33,9 +33,9 @@ while true; do
       -rpcport=$rpcport \
       -rpcuser=$rpcuser \
       -rpcpassword=$rpcpassword \
-      generate 100
+      generate 1
 
-    echo "Generated 100, sleep 3s"
-    sleep 3
+    echo "Generated 1 block, sleep 60s"
+    sleep 60
 done
 
