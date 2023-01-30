@@ -1,0 +1,17 @@
+version: '3.7'
+
+services:
+  ducatuscoin_miner:
+    image: rnbdeploy/ducatuscoin:latest
+    build:
+        context: .
+        dockerfile: Dockerfile
+    command: bash automine.sh
+    restart: always
+    volumes:
+      - ./automine.sh:/root/ducatuscoin/automine.sh
+      - ./mining_conf/ducatuscoin.conf:/root/.ducatuscoin/ducatuscoin.conf
+      - ./mining_conf/node_pwd.txt:/root/.ducatuscoin/node_pwd
+
+
+
